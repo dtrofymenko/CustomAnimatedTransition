@@ -79,7 +79,7 @@ class SimpleTransitionAnimator : NSObject, UIViewControllerAnimatedTransitioning
             completion: { (finished: Bool) in
                // 4. Reset to original values
                // 5. Complete transition
-               transitionContext.completeTransition(true)
+               transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
             }
          )
       } else {

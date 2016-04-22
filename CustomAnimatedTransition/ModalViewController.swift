@@ -13,14 +13,37 @@ class ModalViewController : UIViewController {
    @IBOutlet weak var textLabel : UILabel!
    @IBOutlet weak var imageView : UIImageView!
    
+//   override func viewWillAppear(animated: Bool) {
+//      super.viewWillAppear(animated)
+//      if (nil != self.transitionCoordinator()) {
+//         self.view.backgroundColor = UIColor.greenColor()
+//         self.transitionCoordinator()?.animateAlongsideTransition({ (context) in
+//            self.view.backgroundColor = UIColor.redColor()
+//         }, completion: nil)
+//      }
+//   }
+//   
+//   override func viewWillDisappear(animated: Bool) {
+//      super.viewWillDisappear(animated)
+//      if (nil != self.transitionCoordinator()) {
+//         self.view.backgroundColor = UIColor.redColor()
+//         self.transitionCoordinator()?.animateAlongsideTransition({ (context) in
+//            self.view.backgroundColor = UIColor.greenColor()
+//         }, completion:{ (context) in
+//            if (context.isCancelled()) {
+//               self.view.backgroundColor = UIColor.redColor()
+//            }
+//         })
+//      }
+//   }
    
    override func viewDidLoad() {
       super.viewDidLoad()
       panTransitionInteractor = PanTransitionInteractor()
       view.addGestureRecognizer(panTransitionInteractor!.gestureRecognizer)
       
-      panTransitionInteractor!.startBlock = { () -> () in
-         self.dismissViewControllerAnimated(true, completion: nil)
+      panTransitionInteractor!.startBlock = { [weak self] () -> () in
+         self?.dismissViewControllerAnimated(true, completion: nil)
       }
    }
 }
